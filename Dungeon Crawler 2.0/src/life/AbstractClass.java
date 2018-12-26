@@ -1,7 +1,7 @@
 package life;
 
 
-public class AbstractClass {
+public abstract class AbstractClass {
 	public String name = "???";
 	public int level = 1;
 	public double hp = 1;

@@ -4,10 +4,13 @@ import util.Utilities;
 
 public class PlayerClass extends AbstractClass {
 
+	public int[] cords; //used to detect which room player is in
+
 	public PlayerClass(String name) {
 		this.name = name;
 		double maxAg = Math.pow(this.ag*3, 1.1);
 		double score = 0;
+		int[] cords = new int[] {0,0}; //Cordinates of player. default start 0,0
 	}
 	
 	
@@ -15,6 +18,11 @@ public class PlayerClass extends AbstractClass {
 		int[] list = new int[5];
 		//add stats here
 		return list;
+	}
+	public void changeCord(int x, int y) //x = 1/-1 to move east/west, y = 1/-1 to move north/south.
+	{
+		this.cords[0] += x;
+		this.cords[1] += y;
 	}
 	
 	public void levelUp(int points) {
