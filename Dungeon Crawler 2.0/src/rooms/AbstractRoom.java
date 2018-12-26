@@ -7,9 +7,9 @@ import space.Wall;
 
 public abstract class AbstractRoom {
 	
-	int x = 16;
-	int y = 16;
-	AbstractSpace[][] room = new AbstractSpace[x][y];{
+	public int x = 16;
+	public int y = 16;
+	public AbstractSpace[][] room = new AbstractSpace[x][y];{
 		for (int xx = 0; xx < x; xx++) {
 			for (int yy = 0; yy < y; yy++) {
 				if (xx == 0 || xx == x-1) {

@@ -13,7 +13,7 @@ public class RoomPlayer {
 		int y = room.y;
 		for (int xx = 0; xx < x; xx++) {
 			for (int yy = 0; yy < y; yy++) {
-				if (room[xx][yy].isPlayer) {
+				if (room.room[xx][yy].isPlayer) {
 					
 				}
 			}

@@ -2,9 +2,9 @@ package space;
 
 public abstract class AbstractSpace {
 	char rep = 'X';
-	boolean solid = false;
+	public boolean solid = false;
 	
 	//not sure if needed
-	boolean isAlive = false;
-	boolean isPlayer = false;
+	public boolean isAlive = false;
+	public boolean isPlayer = false;
 }
