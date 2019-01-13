@@ -1,11 +1,13 @@
 package space;
 
+import life.AbstractClass;
+
 public class Player extends AbstractSpace {
 
 	public Player() {
-		this.rep = '@';
-		this.isAlive = true;
-		this.isPlayer = true;
+		rep = '@';
+		isAlive = true;
+		isPlayer = true;
 	}
 
 }

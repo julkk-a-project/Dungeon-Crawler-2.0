@@ -16,7 +16,7 @@ public class Utilities {
 				mojligheter, mojligheter[0]);
 		return svar;
 	}
-	public static int directionForcer (String message) {
+	public static int directionForcer(String message) {
 		String string = JOptionPane.showInputDialog(message);
 		int integer = 5;
 		try {
@@ -25,9 +25,23 @@ public class Utilities {
 			if (string.equals("5"))
 			return integer;
 		}
-		finally{
-			return integer;
+
+		return integer;
+	}
+
+	public static int getIntLimited(String message, int max) {
+		String string = JOptionPane.showInputDialog(message);
+		int integer;
+		try {
+			integer = Integer.parseInt(string);
+			if (integer > max) {
+				return getIntLimited(message, max);
+			}
+		} catch (Exception e) {
+			return getIntLimited(message, max);
 		}
+			return integer;
+		
 	}
 	
 	

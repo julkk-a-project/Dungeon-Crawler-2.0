@@ -3,10 +3,12 @@ package life;
 import util.Utilities;
 
 public class PlayerClass extends AbstractClass {
-
+	
 	public int[] cords; //used to detect which room player is in
 
 	public PlayerClass(String name) {
+		this.klass = "Player";
+		isPlayer = true;
 		this.name = name;
 		double maxAg = Math.pow(this.ag*3, 1.1);
 		double score = 0;

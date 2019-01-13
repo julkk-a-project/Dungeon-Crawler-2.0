@@ -2,9 +2,12 @@ import java.lang.annotation.Target;
 
 import javax.swing.JOptionPane;
 
+import battle.Battle;
+import life.AbstractClass;
 import life.PlayerClass;
 import rooms.AbstractRoom;
 import space.AbstractSpace;
+import space.Entity;
 import space.Floor;
 import space.Wall;
 import space.Player;
@@ -12,7 +15,7 @@ import space.Player;
 public class RoomPlayer {
 
 	
-	public static int[] roomPlayer(AbstractRoom Room) {
+	public static int[] roomPlayer(AbstractRoom Room, AbstractClass Player) {
 		String map = null;
 		int x = Room.x;
 		int y = Room.y;
@@ -38,7 +41,7 @@ public class RoomPlayer {
 		
 			//Temp solution to show and move player
 			int direction = util.Utilities.directionForcer(map+"\n\nUse numpad to move");
-			moveHandler(Room, hasPlayer, direction);
+			moveHandler(Room, hasPlayer, direction, Player);
 		
 		}
 		
@@ -46,7 +49,7 @@ public class RoomPlayer {
 		return cords;
 	}
 	
-	private static AbstractRoom moveHandler(AbstractRoom room, int[] hasPlayer, int direction){ //make direction display like numpad
+	private static AbstractRoom moveHandler(AbstractRoom room, int[] hasPlayer, int direction, AbstractClass Player){ //make direction display like numpad
 		int[] moveCord = new int[2]; 
 		
 		//default swap
@@ -92,8 +95,9 @@ public class RoomPlayer {
 		if (Target.isNPC) {
 			//add encounter event
 		}
-		else if (Target.isAlive) {
-			//add battle event
+		else if (Target.isAlive && !Target.isPlayer) {
+			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
+			Battle.battle(Player, Target.Class);
 		}
 		else if (!Target.solid) {
 			swapper(room, hasPlayer, moveCord);
@@ -101,7 +105,7 @@ public class RoomPlayer {
 		return room;
 	}
 	private static AbstractRoom swapper(AbstractRoom room, int[] cord1, int[] cord2) {
-		//System.out.println("cord1"+cord1[0]+" "+cord1[1]);
+		//System.out.println("cord1"+cord1[0]+"+cord1[1]);
 		//System.out.println("cord2"+cord2[0]+" "+cord2[1]);
 		//takes objects into memory
 		AbstractSpace Cord1Obj = room.room[cord1[0]][cord1[1]];

@@ -2,6 +2,7 @@ package rooms;
 
 import space.AbstractSpace;
 import space.Floor;
+import space.Goblin;
 import space.Player;
 import space.Wall;
 
@@ -24,5 +25,7 @@ public abstract class AbstractRoom {
 			}
 		}
 		room[5][5] = new Player();
+		room[2][2] = new Goblin();
+		
 	}
 }

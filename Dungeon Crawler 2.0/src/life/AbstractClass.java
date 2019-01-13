@@ -2,7 +2,10 @@ package life;
 
 
 public abstract class AbstractClass {
+	public boolean isPlayer = false; //used if player in battle	
+	public boolean isNPC = false; //used for dialouge people?
 	public String name = "???";
+	public String klass = "???";
 	public int level = 1;
 	public double hp = 1;
 	public double maxHp = 1;
@@ -17,4 +20,6 @@ public abstract class AbstractClass {
 	public int armorType = 0; //0 = human skin, 1 = Wood, 2 = ticc oger skin, 3 = metalic
 	public double xpGrant = 0;
 	public double scoreGrant = 0;
+	public abstract String getAttacks();
+	public abstract int getAttackNum();
 }

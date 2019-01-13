@@ -35,7 +35,7 @@ public class Game {
 			//if (Arrays.equals(Player.cords, testRoom)) {
 				System.out.println("test");
 				AbstractRoom Room1 = new TestRoom();
-				Player.cords = RoomPlayer.roomPlayer(Room1);
+				Player.cords = RoomPlayer.roomPlayer(Room1, Player);
 			//}
 		}
 		return Player.getStats(); //This when you die
