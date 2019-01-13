@@ -7,4 +7,8 @@ public abstract class AbstractSpace {
 	//not sure if needed
 	public boolean isAlive = false;
 	public boolean isPlayer = false;
+	
+	public char draw() {
+		return rep;
+	}
 }

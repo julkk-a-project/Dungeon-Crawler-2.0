@@ -3,6 +3,8 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 import life.PlayerClass;
+import rooms.AbstractRoom;
+import rooms.TestRoom;
 
 public class Game {
 
@@ -29,11 +31,12 @@ public class Game {
 		
 		
 		//Game event handler
-		
-		while (Player.hp > 0) {//Loop til u die or retire
-			if (Arrays.equals(Player.cords, testRoom)) {
-				Player.cords = RoomPlayer.testRoom();
-			}
+		while (Player.hp > 0) {//Loop till u die or retire
+			//if (Arrays.equals(Player.cords, testRoom)) {
+				System.out.println("test");
+				AbstractRoom Room1 = new TestRoom();
+				Player.cords = RoomPlayer.roomPlayer(Room1);
+			//}
 		}
 		return Player.getStats(); //This when you die
 
