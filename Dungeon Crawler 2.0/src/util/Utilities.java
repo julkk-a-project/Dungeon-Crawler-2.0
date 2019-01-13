@@ -16,6 +16,19 @@ public class Utilities {
 				mojligheter, mojligheter[0]);
 		return svar;
 	}
+	public static int directionForcer (String message) {
+		String string = JOptionPane.showInputDialog(message);
+		int integer = 5;
+		try {
+			integer = Integer.parseInt(string);
+		} catch (Exception e) {
+			if (string.equals("5"))
+			return integer;
+		}
+		finally{
+			return integer;
+		}
+	}
 	
 	
 }
