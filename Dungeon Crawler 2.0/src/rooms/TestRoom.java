@@ -32,6 +32,7 @@ public class TestRoom extends AbstractRoom {
 			}
 			room[5][5] = new Player();
 			room[2][2] = new Goblin();
+			room[4][2] = new Goblin();
 		}
 	}
 	

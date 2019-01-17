@@ -20,6 +20,39 @@ public abstract class AbstractClass {
 	public int armorType = 0; //0 = human skin, 1 = Wood, 2 = ticc oger skin, 3 = metalic
 	public double xpGrant = 0;
 	public double scoreGrant = 0;
-	public abstract String getAttacks();
-	public abstract int getAttackNum();
+	public double agXp = 0;
+	public double score = 0;
+	
+	
+	protected boolean hasSPIT = true; //special
+	protected boolean hasSLAP = false;
+	protected boolean hasKICK = false;
+	protected boolean hasCLAW = false;
+	
+	public String getAttacks() {
+		String list = "boobs";
+		if (hasSLAP){
+			list += "0: Slap\n";
+		}
+		if (hasKICK){
+			list += "1: kick\n";
+		}
+		if (hasCLAW){
+			list += "2: Claw\n";
+		}
+		return list;
+	}
+	public int getAttackNum() {
+		int total = 0;
+		if (hasSLAP){
+			total ++;
+		}
+		if (hasKICK){
+			total ++;
+		}
+		if (hasCLAW){
+			total ++;
+		}
+		return total;
+	}
 }

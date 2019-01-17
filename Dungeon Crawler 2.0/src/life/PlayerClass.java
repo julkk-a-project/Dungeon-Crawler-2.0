@@ -11,8 +11,12 @@ public class PlayerClass extends AbstractClass {
 		isPlayer = true;
 		this.name = name;
 		double maxAg = Math.pow(this.ag*3, 1.1);
+		maxXp = Math.pow(level*3, 2);
 		double score = 0;
 		int[] cords = new int[] {0,0}; //Cordinates of player. default start 0,0
+		hasSLAP = true;
+		hasKICK = true;
+		hasCLAW = true;
 	}
 	
 	
@@ -54,5 +58,13 @@ public class PlayerClass extends AbstractClass {
 			this.levelUp(points);
 		}
 	}
+
+
+	@Override
+	public String getAttacks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

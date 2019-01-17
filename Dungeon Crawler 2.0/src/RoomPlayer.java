@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import battle.Battle;
 import life.AbstractClass;
 import life.PlayerClass;
-import rooms.AbstractRoom;
+import rooms.*;
 import space.AbstractSpace;
 import space.Entity;
 import space.Floor;
@@ -51,10 +51,10 @@ public class RoomPlayer {
 	
 	private static AbstractRoom moveHandler(AbstractRoom room, int[] hasPlayer, int direction, AbstractClass Player){ //make direction display like numpad
 		int[] moveCord = new int[2]; 
-		
-		//default swap
+		//default swap TODO: combine with line above.
 		moveCord[0] = hasPlayer[0];
 		moveCord[1] = hasPlayer[1];
+		
 		
 		//add all 8 directions to move to w/ solid chekker
 		if (direction == 7) {
