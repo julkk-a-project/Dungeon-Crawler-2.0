@@ -14,9 +14,9 @@ import space.Wall;
 public class TestRoom extends AbstractRoom {
 	
 	public TestRoom(){
-		int x = 16;
-		int y = 16;
-		AbstractSpace[][] room = new AbstractSpace[x][y];{
+		x = 16;
+		y = 16;
+		room = new AbstractSpace[x][y];{
 			for (int xx = 0; xx < x; xx++) {
 				for (int yy = 0; yy < y; yy++) {
 					if (xx == 0 || xx == x-1) {

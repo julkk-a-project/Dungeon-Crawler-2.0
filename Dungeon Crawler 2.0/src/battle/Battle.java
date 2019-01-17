@@ -43,13 +43,15 @@ public class Battle {
 	}
 
 	private static boolean dodger(double landHit, AbstractClass Defender) {
-		double dodgeValue = Defender.ag * 0.5; //TODO: make a range
+		double dodgeValue = (double)Defender.ag; //TODO: make a range
+		System.out.println(dodgeValue);
 		return (dodgeValue > landHit);
 	}
 
 	private static double hitLander(double dif, AbstractClass Attacker) {
-		double wellHit = dif * Attacker.ag; //TODO: make a range
-		return wellHit;
+		double landHit = dif * Attacker.ag; //TODO: make a range
+		System.out.println(landHit);
+		return landHit;
 	}
 
 	private static double[] ATypeHandler(AbstractClass Attacker) {

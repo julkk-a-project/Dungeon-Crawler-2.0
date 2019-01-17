@@ -6,7 +6,7 @@ public class Goblin extends Swarmer {
 
 	public Goblin() {
 		rep = 'g';
-		AbstractClass Class = new life.Goblin();
+		Class = new life.Goblin();
 	}
 
 }

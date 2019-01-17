@@ -97,7 +97,7 @@ public class RoomPlayer {
 		}
 		else if (Target.isAlive && !Target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Battle.battle(Player, Target.Class);
+			Battle.battle(Player, Target.Class); //use interface instead of superclass for "Class"
 		}
 		else if (!Target.solid) {
 			swapper(room, hasPlayer, moveCord);
