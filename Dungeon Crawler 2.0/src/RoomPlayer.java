@@ -31,6 +31,10 @@ public class RoomPlayer {
 			for (int yy = y-1; yy >= 0; yy--) { 
 				for (int xx = 0; xx < x; xx++) {
 					map += Room.room[xx][yy].draw();
+					if (Room.room[xx][yy].isAlive) {
+						int[] self = {xx,yy};
+						moveHandler(Room, self, Room.room[xx][yy].AI(Room, self, hasPlayer), Player); //TODO: parameter "Player" should be implemented in a better way.
+					}
 					if (Room.room[xx][yy].isPlayer) {
 						hasPlayer[0] = xx;
 						hasPlayer[1] = yy;
