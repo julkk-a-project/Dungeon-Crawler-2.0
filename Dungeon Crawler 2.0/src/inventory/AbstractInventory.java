@@ -4,9 +4,9 @@ import item.AbstractItem;
 
 public abstract class AbstractInventory {
 	
-	int x;
-	int y;
-	AbstractItem[][] array;	
+	public int x;
+	public int y;
+	public AbstractItem[][] array;	
 	double gold = 0;
 	
 	public AbstractInventory() {

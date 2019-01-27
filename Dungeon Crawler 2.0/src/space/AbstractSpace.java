@@ -1,5 +1,6 @@
 package space;
 
+import item.AbstractItem;
 import life.AbstractClass;
 import rooms.AbstractRoom;
 
@@ -14,6 +15,7 @@ public abstract class AbstractSpace {
 	public AbstractClass Class;
 	public int AP = 0;
 	public boolean notKilled = true;
+	protected AbstractItem item;
 	
 	public char draw() {
 		return rep;
@@ -22,4 +24,5 @@ public abstract class AbstractSpace {
 		return 5;
 		
 	}
+	public abstract AbstractItem getItem();
 }

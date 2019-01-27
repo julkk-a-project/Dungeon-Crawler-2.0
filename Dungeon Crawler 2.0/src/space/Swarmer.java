@@ -136,7 +136,7 @@ public class Swarmer extends Entity {
 		
 		AbstractSpace Target = Room.room[moveCord[0]][moveCord[1]];
 		
-		if (Target.solid || Target.isAlive) {
+		if (Target.solid || Target.isAlive || Target.playerInteract) {
 			return false;
 		}else {
 			return true;

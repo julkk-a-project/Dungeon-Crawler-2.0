@@ -2,6 +2,7 @@ package life;
 
 import inventory.AbstractInventory;
 import inventory.PlayerStartingInventory;
+import item.AbstractItem;
 import util.Utilities;
 
 public class PlayerClass extends AbstractClass {
@@ -13,7 +14,7 @@ public class PlayerClass extends AbstractClass {
 		isPlayer = true;
 		this.name = name;
 		
-		AbstractInventory inventory = new PlayerStartingInventory();
+		Inventory = new PlayerStartingInventory();
 		
 		double maxAg = Math.pow(this.ag*3, 1.1);
 		maxXp = Math.pow(level*3, 2);
@@ -64,6 +65,28 @@ public class PlayerClass extends AbstractClass {
 			this.levelUp(points);
 		}
 	}
+
+
+	@Override
+	public void addInventory(AbstractItem item) {
+		boolean itemLimbo = true;
+		int[] emptySpot = new int[2];
+		System.out.println("1");
+		for (int xx = 0; xx < Inventory.x-1; xx++) {
+			System.out.println("2");
+			for (int yy = 0; yy < Inventory.y-1; yy++) {
+				System.out.println("2.1");
+				if (Inventory.array[xx][yy].isEmpty) {
+					System.out.println("3");
+					emptySpot[0] = xx;
+					emptySpot[1] = yy;
+				}
+			}
+		}
+		Inventory.array[emptySpot[0]][emptySpot[1]] = item;
+		System.out.println("4");
+	}
+	
 
 /*
 	@Override

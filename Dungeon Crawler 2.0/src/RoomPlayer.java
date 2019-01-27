@@ -3,6 +3,7 @@ import java.lang.annotation.Target;
 import javax.swing.JOptionPane;
 
 import battle.Battle;
+import item.MinorHpPotion;
 import life.AbstractClass;
 import life.PlayerClass;
 import rooms.*;
@@ -37,7 +38,7 @@ public class RoomPlayer {
 						Room.room[xx][yy].AP += 1;
 					}else if (!Room.room[xx][yy].notKilled) {
 						//KillEvent //TODO: add loot?
-						Room.room[xx][yy] = new Floor();
+						Room.room[xx][yy] = new Floor(new MinorHpPotion());
 					}
 					if (Room.room[xx][yy].isPlayer) {
 						hasPlayer[0] = xx;
@@ -118,12 +119,19 @@ public class RoomPlayer {
 			moveCord[0] = self[0] + 1;
 			moveCord[1] = self[1] - 1;
 		}
+		else if (direction == 100) {
+			JOptionPane.showMessageDialog(null, Player.Inventory.getContents());
+		}
 		
 		AbstractSpace Target = room.room[moveCord[0]][moveCord[1]];
 		AbstractSpace Self = room.room[self[0]][self[1]];
 		
 		if (Target.isNPC) {
 			//add encounter event
+		}
+		else if (Self.isPlayer && Target.playerInteract) {
+			Player.addInventory(Target.getItem());
+			swapper(room, self, moveCord);
 		}
 		else if (Self.isPlayer && Target.isAlive && !Target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];

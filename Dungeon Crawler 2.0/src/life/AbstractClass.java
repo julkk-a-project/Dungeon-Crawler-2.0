@@ -1,5 +1,7 @@
 package life;
 
+import inventory.AbstractInventory;
+import item.AbstractItem;
 
 public abstract class AbstractClass {
 	public boolean isPlayer = false; //used if player in battle	
@@ -22,6 +24,7 @@ public abstract class AbstractClass {
 	public double scoreGrant = 0;
 	public double agXp = 0;
 	public double score = 0;
+	public AbstractInventory Inventory;
 	
 	
 	protected boolean hasSPIT = true; //special
@@ -55,4 +58,5 @@ public abstract class AbstractClass {
 		}
 		return total;
 	}
+	public abstract void addInventory(AbstractItem item);
 }
