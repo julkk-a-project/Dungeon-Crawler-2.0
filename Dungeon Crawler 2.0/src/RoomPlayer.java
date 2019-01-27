@@ -30,15 +30,37 @@ public class RoomPlayer {
 			map = "";
 			for (int yy = y-1; yy >= 0; yy--) { 
 				for (int xx = 0; xx < x; xx++) {
-					map += Room.room[xx][yy].draw();
-					if (Room.room[xx][yy].isAlive) {
-						int[] self = {xx,yy};
-						moveHandler(Room, self, Room.room[xx][yy].AI(Room, self, hasPlayer), Player); //TODO: parameter "Player" should be implemented in a better way.
+					if (Room.room[xx][yy].isAlive && Room.room[xx][yy].notKilled) {
+						//handels ActionPoints for AI
+						Room.room[xx][yy].AP += 1;
+					}else if (!Room.room[xx][yy].notKilled) {
+						//KillEvent //TODO: add loot?
+						Room.room[xx][yy] = new Floor();
 					}
 					if (Room.room[xx][yy].isPlayer) {
 						hasPlayer[0] = xx;
 						hasPlayer[1] = yy;
 					}
+				}
+			}
+			
+			//Moves AI
+			for (int yy = y-1; yy >= 0; yy--) { 
+				for (int xx = 0; xx < x; xx++) {
+					map += Room.room[xx][yy].draw();
+					if (Room.room[xx][yy].isAlive && (Room.room[xx][yy].AP > 0)) { //TODO: make AP calc more complex
+						int[] self = {xx,yy};
+						moveHandler(Room, self, Room.room[xx][yy].AI(Room, self, hasPlayer), Player); //TODO: parameter "Player" should be implemented in a better way.
+					}
+				}
+				map += "\n";
+			}
+			
+			//Draws room
+			map = "";
+			for (int yy = y-1; yy >= 0; yy--) { 
+				for (int xx = 0; xx < x; xx++) {
+					map += Room.room[xx][yy].draw();
 				}
 				map += "\n";
 			}
@@ -53,58 +75,67 @@ public class RoomPlayer {
 		return cords;
 	}
 	
-	private static AbstractRoom moveHandler(AbstractRoom room, int[] hasPlayer, int direction, AbstractClass Player){ //make direction display like numpad
+	private static AbstractRoom moveHandler(AbstractRoom room, int[] self, int direction, AbstractClass Player){ //make direction display like numpad
 		int[] moveCord = new int[2]; 
 		//default swap TODO: combine with line above.
-		moveCord[0] = hasPlayer[0];
-		moveCord[1] = hasPlayer[1];
+		moveCord[0] = self[0];
+		moveCord[1] = self[1];
 		
 		
 		//add all 8 directions to move to w/ solid chekker
 		if (direction == 7) {
-			moveCord[0] = hasPlayer[0] - 1;
-			moveCord[1] = hasPlayer[1] + 1;
+			moveCord[0] = self[0] - 1;
+			moveCord[1] = self[1] + 1;
 		}
 		else if (direction == 8) {
-			moveCord[0] = hasPlayer[0];
-			moveCord[1] = hasPlayer[1] + 1;
+			moveCord[0] = self[0];
+			moveCord[1] = self[1] + 1;
 		}
 		else if (direction == 9) {
-			moveCord[0] = hasPlayer[0] + 1;
-			moveCord[1] = hasPlayer[1] + 1;
+			moveCord[0] = self[0] + 1;
+			moveCord[1] = self[1] + 1;
 		}
 		else if (direction == 4) {
-			moveCord[0] = hasPlayer[0] - 1;
-			moveCord[1] = hasPlayer[1];
+			moveCord[0] = self[0] - 1;
+			moveCord[1] = self[1];
 		}
 		else if (direction == 6) {
-			moveCord[0] = hasPlayer[0] + 1;
-			moveCord[1] = hasPlayer[1];
+			moveCord[0] = self[0] + 1;
+			moveCord[1] = self[1];
 		}
 		else if (direction == 1) {
-			moveCord[0] = hasPlayer[0] - 1;
-			moveCord[1] = hasPlayer[1] - 1;
+			moveCord[0] = self[0] - 1;
+			moveCord[1] = self[1] - 1;
 		}
 		else if (direction == 2) {
-			moveCord[0] = hasPlayer[0];
-			moveCord[1] = hasPlayer[1] - 1;
+			moveCord[0] = self[0];
+			moveCord[1] = self[1] - 1;
 		}
 		else if (direction == 3) {
-			moveCord[0] = hasPlayer[0] + 1;
-			moveCord[1] = hasPlayer[1] - 1;
+			moveCord[0] = self[0] + 1;
+			moveCord[1] = self[1] - 1;
 		}
 		
 		AbstractSpace Target = room.room[moveCord[0]][moveCord[1]];
+		AbstractSpace Self = room.room[self[0]][self[1]];
 		
 		if (Target.isNPC) {
 			//add encounter event
 		}
-		else if (Target.isAlive && !Target.isPlayer) {
+		else if (Self.isPlayer && Target.isAlive && !Target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Battle.battle(Player, Target.Class); //use interface instead of superclass for "Class"
+			Target.notKilled = Battle.battle(Player, Target.Class); //use interface instead of superclass for "Class"
+		}
+		else if (!Self.isPlayer && Target.isAlive && !Target.isPlayer) {
+			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
+			Target.notKilled = Battle.battle(Self.Class, Target.Class); //use interface instead of superclass for "Class"
+		}
+		else if (!Self.isPlayer && Target.isAlive && Target.isPlayer) {
+			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
+			Battle.battle(Self.Class, Player); //use interface instead of superclass for "Class"
 		}
 		else if (!Target.solid) {
-			swapper(room, hasPlayer, moveCord);
+			swapper(room, self, moveCord);
 		}
 		return room;
 	}

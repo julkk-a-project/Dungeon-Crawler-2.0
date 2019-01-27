@@ -11,6 +11,8 @@ public abstract class AbstractSpace {
 	public boolean isNPC = false;
 	public boolean isPlayer = false;
 	public AbstractClass Class;
+	public int AP = 0;
+	public boolean notKilled = true;
 	
 	public char draw() {
 		return rep;

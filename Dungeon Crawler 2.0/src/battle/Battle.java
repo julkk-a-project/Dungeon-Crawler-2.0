@@ -3,8 +3,8 @@ import life.AbstractClass;
 import util.Utilities;
 
 public class Battle {
-	public static void battle(AbstractClass Attacker, AbstractClass Defender){
-		//System.out.println("Battle");
+	public static boolean battle(AbstractClass Attacker, AbstractClass Defender){
+		System.out.println("Battle: "+Attacker.name+" attacking "+Defender.name);
 		//if (Attacker.isPlayer) { <-- implement AI in choises if not player
 		//int choseAttack = Utilities.getIntLimited(Attacker.getAttacks(), Attacker.getAttackNum());
 		//attack = choseAttack(); //For a more complex time
@@ -27,6 +27,15 @@ public class Battle {
 				Attacker.agXp += 1; //TODO: maybe make more complex
 			}
 		}
+		System.out.println(Defender.name +" "+Defender.hp+"/"+Defender.maxHp);
+		
+		if (Defender.hp > 0) {
+			return true;
+		}else {
+			System.out.println("GotKilled");
+			return false;
+		}
+		
 	}
 
 	private static void deathHandler(AbstractClass Attacker, AbstractClass Defender) {
@@ -43,14 +52,15 @@ public class Battle {
 	}
 
 	private static boolean dodger(double landHit, AbstractClass Defender) {
-		double dodgeValue = (double)Defender.ag; //TODO: make a range
-		System.out.println(dodgeValue);
+		double dodgeValue = (Math.random() * ((Defender.ag - 0) + 0)) + 0; //TODO: make a range
+		//System.out.println("DodgeValue: "+dodgeValue);
+		System.out.println("dodge "+(dodgeValue > landHit));
 		return (dodgeValue > landHit);
 	}
 
 	private static double hitLander(double dif, AbstractClass Attacker) {
 		double landHit = dif * Attacker.ag; //TODO: make a range
-		System.out.println(landHit);
+		//System.out.println("LandHit: "+landHit);
 		return landHit;
 	}
 
@@ -64,6 +74,7 @@ public class Battle {
 			//TODO: Add AI here
 		}
 		double[] attackType = Attacks.AttackType(choise);
+		//System.out.println("AttackType: "+attackType);
 		return attackType;
 	}
 }
