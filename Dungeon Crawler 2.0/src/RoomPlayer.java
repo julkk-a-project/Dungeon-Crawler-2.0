@@ -25,6 +25,8 @@ public class RoomPlayer {
 		
 		//as long as player is inside
 		while (playerInside) {
+			
+			System.out.println("--------------");
 
 			//Reads room
 			map = "";
@@ -49,6 +51,7 @@ public class RoomPlayer {
 				for (int xx = 0; xx < x; xx++) {
 					map += Room.room[xx][yy].draw();
 					if (Room.room[xx][yy].isAlive && (Room.room[xx][yy].AP > 0)) { //TODO: make AP calc more complex
+						Room.room[xx][yy].AP -= 1;
 						int[] self = {xx,yy};
 						moveHandler(Room, self, Room.room[xx][yy].AI(Room, self, hasPlayer), Player); //TODO: parameter "Player" should be implemented in a better way.
 					}
@@ -126,11 +129,11 @@ public class RoomPlayer {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
 			Target.notKilled = Battle.battle(Player, Target.Class); //use interface instead of superclass for "Class"
 		}
-		else if (!Self.isPlayer && Target.isAlive && !Target.isPlayer) {
+		else if (!Self.isPlayer && Target.isAlive && !Target.isPlayer && (Self != Target)) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
 			Target.notKilled = Battle.battle(Self.Class, Target.Class); //use interface instead of superclass for "Class"
 		}
-		else if (!Self.isPlayer && Target.isAlive && Target.isPlayer) {
+		else if (!Self.isPlayer && Target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
 			Battle.battle(Self.Class, Player); //use interface instead of superclass for "Class"
 		}

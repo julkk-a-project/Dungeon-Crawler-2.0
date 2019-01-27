@@ -14,7 +14,7 @@ public class Battle {
 		
 		//TODO: add flavour text to landHit (such as "X landed a good hit but Y dodged it")
 		
-		double[] attackType = ATypeHandler(Attacker);
+		double[] attackType = ATypeHandler(Attacker, Defender);
 		double landHit = hitLander(attackType[1], Attacker); //how well you land a shot
 		boolean dodge = dodger(landHit, Defender);
 		double damage = armorCalculation(attackType, Attacker, Defender);
@@ -23,11 +23,15 @@ public class Battle {
 			Defender.hp -= damage;
 			if (Defender.hp <= 0) {
 				deathHandler(Attacker, Defender);
-			} else if (Attacker.isPlayer){
-				Attacker.agXp += 1; //TODO: maybe make more complex
+				System.out.println(Defender.name +" "+Defender.hp+"/"+Defender.maxHp);
+			}
+			else {
+				System.out.println(Attacker.name+" missed the "+Defender.name);
 			}
 		}
-		System.out.println(Defender.name +" "+Defender.hp+"/"+Defender.maxHp);
+		else if (Attacker.isPlayer){
+			Attacker.agXp += 1; //TODO: maybe make more complex
+		}
 		
 		if (Defender.hp > 0) {
 			return true;
@@ -64,17 +68,22 @@ public class Battle {
 		return landHit;
 	}
 
-	private static double[] ATypeHandler(AbstractClass Attacker) {
+	private static double[] ATypeHandler(AbstractClass Attacker, AbstractClass Defender) {
 		
 		int choise = -1;
 		
 		if (Attacker.isPlayer) { //TODO: make more modular what attacks one can have.
 			choise = Utilities.getIntLimited(Attacker.getAttacks(), Attacker.getAttackNum());
 		}else {
-			//TODO: Add AI here
+			choise = AttackAI(Attacker, Defender);
 		}
 		double[] attackType = Attacks.AttackType(choise);
 		//System.out.println("AttackType: "+attackType);
 		return attackType;
+	}
+
+	private static int AttackAI(AbstractClass attacker, AbstractClass defender) {
+		
+		return -1;
 	}
 }

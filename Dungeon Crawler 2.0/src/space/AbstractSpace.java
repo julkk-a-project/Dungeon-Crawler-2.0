@@ -6,6 +6,7 @@ import rooms.AbstractRoom;
 public abstract class AbstractSpace {
 	char rep = 'X';
 	public boolean solid = false;
+	public boolean playerInteract = false;
 	public boolean isAlive = false;
 	public boolean isSwarmer = false;
 	public boolean isNPC = false;

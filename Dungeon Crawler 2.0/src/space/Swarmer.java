@@ -10,8 +10,10 @@ public class Swarmer extends Entity {
 
 	public int AI(AbstractRoom Room, int[] self, int[] hasPlayer){ //returns numpad direction
 		int direction = 5;
-		boolean isEast = (self[0] > hasPlayer[0]);
-		boolean isNorth = (self[1] < hasPlayer[1]);
+		boolean isEast = (self[0] >= hasPlayer[0]);
+		boolean isNorth = (self[1] <= hasPlayer[1]);
+		//System.out.println("ownCords "+self[0]+","+self[1]);
+		//System.out.println("PlayerCords "+hasPlayer[0]+","+hasPlayer[1]);
 		
 		
 		if (isEast && isNorth) {
@@ -24,12 +26,12 @@ public class Swarmer extends Entity {
 			}
 		}
 		else if (!isEast && !isNorth) {
-			if (chek(Room, self, 4)) {
-			direction = 4;
-			}else if (chek(Room, self, 7)) {
-				direction = 7;
-			}else if (chek(Room, self, 1)) {
-				direction = 1;
+			if (chek(Room, self, 3)) {
+			direction = 3;
+			}else if (chek(Room, self, 6)) {
+				direction = 6;
+			}else if (chek(Room, self, 2)) {
+				direction = 2;
 			}
 		}
 		else if (isEast && !isNorth) {
@@ -89,7 +91,7 @@ public class Swarmer extends Entity {
 		
 		
 		
-		
+		//System.out.println(this.Class.name+" "+direction);
 		return direction;
 	}
 	

@@ -4,9 +4,9 @@ import life.AbstractClass;
 
 public class Goblin extends Swarmer {
 
-	public Goblin() {
+	public Goblin(String name) {
 		rep = 'g';
-		Class = new life.Goblin();
+		Class = new life.Goblin(name);
 	}
 
 }

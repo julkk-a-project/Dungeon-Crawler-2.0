@@ -25,7 +25,6 @@ public abstract class AbstractRoom {
 			}
 		}
 		room[5][5] = new Player();
-		room[2][2] = new Goblin();
 		
 	}
 }

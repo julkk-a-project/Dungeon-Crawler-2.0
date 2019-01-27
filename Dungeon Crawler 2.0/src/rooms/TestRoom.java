@@ -31,8 +31,15 @@ public class TestRoom extends AbstractRoom {
 				}
 			}
 			room[5][5] = new Player();
-			room[2][2] = new Goblin();
-			room[4][2] = new Goblin();
+			
+			room[4][4] = new Wall();
+			room[5][4] = new Wall();
+			room[6][4] = new Wall();
+			
+			room[2][2] = new Goblin("Gublegrabber");
+			room[4][2] = new Goblin("Blobmork");
+			room[3][2] = new Goblin("Dangelknork");
+			room[5][2] = new Goblin("Gorkernab");
 		}
 	}
 	

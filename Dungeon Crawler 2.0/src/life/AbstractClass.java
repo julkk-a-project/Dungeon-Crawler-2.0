@@ -30,7 +30,7 @@ public abstract class AbstractClass {
 	protected boolean hasCLAW = false;
 	
 	public String getAttacks() {
-		String list = "boobs";
+		String list = "These are your Attacks:\n\n";
 		if (hasSLAP){
 			list += "0: Slap\n";
 		}
