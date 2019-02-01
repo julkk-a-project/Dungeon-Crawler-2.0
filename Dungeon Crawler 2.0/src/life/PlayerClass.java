@@ -71,15 +71,16 @@ public class PlayerClass extends AbstractClass {
 	public void addInventory(AbstractItem item) {
 		boolean itemLimbo = true;
 		int[] emptySpot = new int[2];
-		System.out.println("1");
-		for (int xx = 0; xx < Inventory.x-1; xx++) {
-			System.out.println("2");
-			for (int yy = 0; yy < Inventory.y-1; yy++) {
-				System.out.println("2.1");
+		System.out.println("inventory add chekekr");
+		for (int xx = 0; (xx < Inventory.x) && itemLimbo; xx++) {
+			//System.out.println("x "+xx);
+			for (int yy = Inventory.y-1; (yy >= 0) && itemLimbo; yy--) {
 				if (Inventory.array[xx][yy].isEmpty) {
-					System.out.println("3");
+					System.out.println("x,y: "+xx+","+yy+" isEmpty");
+					//System.out.println("isEmpty");
 					emptySpot[0] = xx;
 					emptySpot[1] = yy;
+					itemLimbo = false;
 				}
 			}
 		}

@@ -11,7 +11,7 @@ public class Floor extends AbstractSpace {
 	public Floor(AbstractItem Item) {
 		this.rep = '+';
 		playerInteract = true;
-		AbstractItem item = Item;
+		item = Item;
 	}
 	
 	public AbstractItem getItem(){
