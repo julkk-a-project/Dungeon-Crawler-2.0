@@ -1,5 +1,8 @@
 package life;
 
+import java.util.ArrayList;
+
+import battle.Attacks;
 import inventory.AbstractInventory;
 import item.AbstractItem;
 
@@ -14,6 +17,7 @@ public abstract class AbstractClass {
 	public int st = 1;
 	public int mp = 0;
 	public int ag = 1;
+	public int intel = 1;
 	public double xp = 0;
 	public double maxXp = Math.pow(level*3, 2);
 	public double mana = 0;
@@ -31,6 +35,7 @@ public abstract class AbstractClass {
 	protected boolean hasSLAP = false;
 	protected boolean hasKICK = false;
 	protected boolean hasCLAW = false;
+	
 	
 	public String getAttacks() {
 		String list = "These are your Attacks:\n\n";
@@ -58,5 +63,27 @@ public abstract class AbstractClass {
 		}
 		return total;
 	}
+	public ArrayList<Integer> getAttackList() {
+		ArrayList<Integer> types = new ArrayList<Integer>();
+		types.add(-1); //Spit
+		
+		if (hasSLAP){
+			types.add(0);
+		}
+		if (hasKICK){
+			types.add(1);
+		}
+		if (hasCLAW){
+			types.add(2);
+		}
+		return types;
+	}
+	
 	public abstract void addInventory(AbstractItem item);
+	
+	
+	
+	
+	
+	
 }
