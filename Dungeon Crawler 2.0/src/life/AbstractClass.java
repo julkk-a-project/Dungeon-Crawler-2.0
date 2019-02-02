@@ -35,6 +35,7 @@ public abstract class AbstractClass {
 	protected boolean hasSLAP = false;
 	protected boolean hasKICK = false;
 	protected boolean hasCLAW = false;
+	public boolean notKilled = true;
 	
 	
 	public String getAttacks() {

@@ -27,6 +27,7 @@ public class RoomPlayer {
 		//as long as player is inside
 		while (playerInside) {
 			
+			
 			System.out.println("--------------");
 
 			//Reads room
@@ -71,6 +72,7 @@ public class RoomPlayer {
 		
 			//Temp solution to show and move player
 			int direction = util.Utilities.directionForcer(map+"\n\nUse numpad to move");
+			playerInside = Player.notKilled;
 			moveHandler(Room, hasPlayer, direction, Player);
 		
 		}
@@ -143,7 +145,7 @@ public class RoomPlayer {
 		}
 		else if (!Self.isPlayer && Target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Battle.battle(Self.Class, Player); //use interface instead of superclass for "Class"
+			Player.notKilled = Battle.battle(Self.Class, Player); //use interface instead of superclass for "Class"
 		}
 		else if (!Target.solid) {
 			swapper(room, self, moveCord);

@@ -40,10 +40,22 @@ public class PlayerStartingInventory extends AbstractInventory {
 		String string = "";
 		string += String.valueOf("Gold: "+gold+"\n\n");
 		for (int yy = y-1; yy >= 0; yy--) {
-			string += "\n";
+			string += "\ny:"+yy+": ";
 			for (int xx = 0; xx <= x-1; xx++) {
-				string +=array[xx][yy].draw()+",";
+				String comma = "";
+				if (xx != x-1) {
+					comma = ",";
+				}
+				string +=array[xx][yy].draw()+comma;
 			}
+		}
+		string += "\nx:   ";
+		for (int xxx = 0; xxx < x; xxx++) {
+			String comma = "";
+			if (xxx != x-1) {
+				comma = ",";
+			}
+			string += xxx+comma;
 		}
 		return string;
 	}
