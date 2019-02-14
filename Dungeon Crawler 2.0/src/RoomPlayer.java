@@ -87,43 +87,49 @@ public class RoomPlayer {
 		moveCord[0] = self[0];
 		moveCord[1] = self[1];
 		
-		
+
 		//add all 8 directions to move to w/ solid chekker
-		if (direction == 7) {
+		
+		switch(direction) {
+		case 7:
 			moveCord[0] = self[0] - 1;
 			moveCord[1] = self[1] + 1;
-		}
-		else if (direction == 8) {
+			break;
+		case 8:
 			moveCord[0] = self[0];
 			moveCord[1] = self[1] + 1;
-		}
-		else if (direction == 9) {
+			break;
+		case 9:
 			moveCord[0] = self[0] + 1;
 			moveCord[1] = self[1] + 1;
-		}
-		else if (direction == 4) {
+			break;
+		case 4:
 			moveCord[0] = self[0] - 1;
 			moveCord[1] = self[1];
-		}
-		else if (direction == 6) {
+			break;
+		case 6:
 			moveCord[0] = self[0] + 1;
 			moveCord[1] = self[1];
-		}
-		else if (direction == 1) {
+			break;
+		case 1:
 			moveCord[0] = self[0] - 1;
 			moveCord[1] = self[1] - 1;
-		}
-		else if (direction == 2) {
+			break;
+		case 2:
 			moveCord[0] = self[0];
 			moveCord[1] = self[1] - 1;
-		}
-		else if (direction == 3) {
+			break;
+		case 3:
 			moveCord[0] = self[0] + 1;
 			moveCord[1] = self[1] - 1;
-		}
-		else if (direction == 100) {
+			break;
+		case 100:
 			JOptionPane.showMessageDialog(null, Player.Inventory.getContents());
+			break;
+			
 		}
+		
+		
 		
 		AbstractSpace Target = room.room[moveCord[0]][moveCord[1]];
 		AbstractSpace Self = room.room[self[0]][self[1]];
