@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,7 +17,7 @@ public class Window extends JFrame implements ActionListener {
 
 	
 	public Window(){
-
+		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800,600);
 		JButton button = new JButton("Press");
@@ -24,15 +25,20 @@ public class Window extends JFrame implements ActionListener {
 		setVisible(true);
 		
 		
+
+		//LOG
+		JTextArea room = new JTextArea(15,40);
+		room.setEditable(false);
+		add(room);
 		
-		
-		
+		//LOG
 		JTextArea log = new JTextArea(15,40);
+		log.setEditable(false);
 		add(log);
 		
 		
 		
-		
+//		pack();
 		setVisible(true);
 	}
 	
