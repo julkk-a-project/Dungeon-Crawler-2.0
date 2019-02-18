@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
+import gui.Window;
 import life.PlayerClass;
 import rooms.AbstractRoom;
 import rooms.TestRoom;
@@ -31,6 +32,7 @@ public class Game {
 		
 		
 		//Game event handler
+		new Window();
 		while (Player.hp > 0) {//Loop till u die or retire
 			//if (Arrays.equals(Player.cords, testRoom)) {
 				System.out.println("test");

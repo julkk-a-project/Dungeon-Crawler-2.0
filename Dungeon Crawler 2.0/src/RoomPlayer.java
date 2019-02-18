@@ -3,6 +3,7 @@ import java.lang.annotation.Target;
 import javax.swing.JOptionPane;
 
 import battle.Battle;
+import gui.Window;
 import item.MinorHpPotion;
 import life.AbstractClass;
 import life.PlayerClass;
@@ -69,7 +70,14 @@ public class RoomPlayer {
 				}
 				map += "\n";
 			}
+			
+			Window.view.setText(map);
 		
+			
+			
+			
+			
+			
 			//Temp solution to show and move player
 			int direction = util.Utilities.directionForcer(map+"\n\nUse numpad to move");
 			playerInside = Player.notKilled;

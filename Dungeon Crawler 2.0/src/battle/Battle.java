@@ -1,10 +1,11 @@
 package battle;
+import gui.Window;
 import life.AbstractClass;
 import util.Utilities;
 
 public class Battle {
 	public static boolean battle(AbstractClass Attacker, AbstractClass Defender){
-		System.out.println("Battle: "+Attacker.name+" attacking "+Defender.name);
+		Window.log.append("Battle: "+Attacker.name+" attacking "+Defender.name+"\n");
 		//if (Attacker.isPlayer) { <-- implement AI in choises if not player
 		//int choseAttack = Utilities.getIntLimited(Attacker.getAttacks(), Attacker.getAttackNum());
 		//attack = choseAttack(); //For a more complex time
@@ -21,24 +22,24 @@ public class Battle {
 			
 		if (!dodge) {
 			Defender.hp -= damage;
-			System.out.println(Attacker.name+" "+Attacks.getVER(attackTypeID)+" "+Defender.name+" causing "+damage+" damage.");
+			Window.log.append(Attacker.name+" "+Attacks.getVER(attackTypeID)+" "+Defender.name+" causing "+damage+" damage."+"\n");
 			if (Defender.hp <= 0) {
 				deathHandler(Attacker, Defender);
-				System.out.println(Defender.name +" "+Defender.hp+"/"+Defender.maxHp);
+				Window.log.append(Defender.name +" "+Defender.hp+"/"+Defender.maxHp+"\n");
 			}
 			else {
-				System.out.println(Attacker.name+" missed the "+Defender.name);
+				Window.log.append(Attacker.name+" missed the "+Defender.klass+" named "+Defender.name+"\n");
 			}
 		}
 		else {
-			System.out.println(Attacker.name+" tried to "+Attacks.getADJ(attackTypeID)+" "+Defender.name+", but missed.");
+			Window.log.append(Attacker.name+" tried to "+Attacks.getADJ(attackTypeID)+" "+Defender.name+", but missed."+"\n");
 			Attacker.agXp += 1; //TODO: maybe make more complex
 		}
 		
 		if (Defender.hp > 0) {
 			return true;
 		}else {
-			System.out.println("GotKilled");
+			Window.log.append(Defender.name+" got killed"+"\n");
 			return false;
 		}
 		
@@ -79,7 +80,7 @@ public class Battle {
 			choise = Utilities.getIntLimited(Attacker.getAttacks(), Attacker.getAttackNum());
 		}else {
 			choise = AI.AttackTypeAI(Attacker, Defender);
-			System.out.println("AI chose attack "+choise);
+			Window.log.append("AI chose attack "+choise+"\n");
 		}
 		double[] attackType= Attacks.AttackType(choise);
 		//System.out.println("AttackType: "+attackType);

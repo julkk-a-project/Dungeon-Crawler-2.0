@@ -6,8 +6,8 @@ import util.Utilities;
 public class Main {
 
 	public static void main(String[] args) {
-		new Window();
-		/*int choice = 0;
+		
+		int choice = 0;
 		int[] Score = new int[5];
 		while (choice != -1 && choice != 2) { 
 			choice = mainMenu();
@@ -26,7 +26,7 @@ public class Main {
 					choice = 0; //when the user wants to continue playing
 				}
 			}
-		}*/
+		}
 	}
 	
 
