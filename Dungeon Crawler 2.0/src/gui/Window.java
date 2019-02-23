@@ -18,6 +18,8 @@ public class Window extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	public static JTextArea view;
 	public static JTextArea log;
+	public static JTextArea inventory
+	;
 
 	
 	public Window(){
@@ -41,7 +43,7 @@ public class Window extends JFrame implements ActionListener {
 		//RoomPlayer
 		c.gridx = 0;
 		c.gridy = 0; 
-		view = new JTextArea("I am the room player view",32,32);
+		view = new JTextArea("I am the room player view",16,16);
 		view.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		view.setEditable(false);
 		add(view,c);
@@ -52,7 +54,14 @@ public class Window extends JFrame implements ActionListener {
 		log = new JTextArea(15,40);
 		log.setEditable(false);
 		add(log,c);
-		
+
+		//Inventory
+		c.gridx = 0;
+		c.gridy = 1; 
+		inventory = new JTextArea("This is the inventory",5,5);
+		inventory.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+		inventory.setEditable(false);
+		add(inventory,c);
 		
 		
 		pack();

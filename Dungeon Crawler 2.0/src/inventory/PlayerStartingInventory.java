@@ -1,5 +1,7 @@
 package inventory;
 
+import battle.Attacks;
+import gui.Window;
 import item.AbstractItem;
 import item.Empty;
 import item.MajorHpPotion;
@@ -38,9 +40,9 @@ public class PlayerStartingInventory extends AbstractInventory {
 	
 	public String getContents(){
 		String string = "";
-		string += String.valueOf("Gold: "+gold+"\n\n");
+		//string += String.valueOf("Gold: "+gold+"\n\n");
 		for (int yy = y-1; yy >= 0; yy--) {
-			string += "\ny:"+yy+": ";
+			//string += "\ny:"+yy+": ";
 			for (int xx = 0; xx <= x-1; xx++) {
 				String comma = "";
 				if (xx != x-1) {
@@ -49,15 +51,17 @@ public class PlayerStartingInventory extends AbstractInventory {
 				string +=array[xx][yy].draw()+comma;
 			}
 		}
-		string += "\nx:   ";
+		//string += "\nx:   ";
 		for (int xxx = 0; xxx < x; xxx++) {
 			String comma = "";
 			if (xxx != x-1) {
-				comma = ",";
+				comma = "";
 			}
 			string += xxx+comma;
 		}
+		Window.inventory.setText(string);
 		return string;
+		
 	}
 
 }
