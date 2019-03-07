@@ -3,8 +3,9 @@ package space;
 public class Wall extends AbstractSpace {
 
 	public Wall() {
-		this.rep = '#';
+		rep = '#';
 		this.solid = true;
 	}
+
 
 }

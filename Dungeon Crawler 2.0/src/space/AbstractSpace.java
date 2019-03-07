@@ -1,21 +1,19 @@
 package space;
 
-import item.AbstractItem;
 import life.AbstractClass;
 import rooms.AbstractRoom;
 
 public abstract class AbstractSpace {
-	char rep = 'X';
-	public boolean solid = false;
-	public boolean playerInteract = false;
-	public boolean isAlive = false;
-	public boolean isSwarmer = false;
-	public boolean isNPC = false;
-	public boolean isPlayer = false;
-	public AbstractClass Class;
+	protected static char rep;
+	public static boolean solid = false;
+	public static boolean playerInteract = false;
+	public static boolean isAlive = false;
+	public static boolean isSwarmer = false;
+	public static boolean isNPC = false;
+	public static boolean isPlayer = false;
+	public static AbstractClass Class;
 	public int AP = 0;
 	public boolean notKilled = true;
-	protected AbstractItem item;
 	
 	public char draw() {
 		return rep;
@@ -24,5 +22,4 @@ public abstract class AbstractSpace {
 		return 5;
 		
 	}
-	public abstract AbstractItem getItem();
 }

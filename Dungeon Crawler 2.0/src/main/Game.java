@@ -1,5 +1,4 @@
-import java.util.Arrays;
-
+package main;
 import javax.swing.JOptionPane;
 
 import gui.Window;
@@ -11,18 +10,21 @@ public class Game {
 
 	
 
-	public static int[] game(String playerName) {
+	public static Window window;
 
-		//MAP
-		int[] testRoom = new int[] {0,0};
+	public Game(String playerName) {
+
+		//ROOM CREATOR
+		AbstractRoom testRoom = new TestRoom();
 		
 		
 		//initial setup for game
-		
-		PlayerClass Player = new PlayerClass(playerName);
+
+		window = new Window();
+		PlayerClass player = new PlayerClass(playerName);
 		JOptionPane.showMessageDialog(null, "You'll start your adventure off, by leveling up your level 0 character to level 1!\n"
 											+ "we'll grant you 5 points to do that with!");
-		Player.levelUp(5);
+		player.levelUp(5);
 
 		//places player cords in player
 		//index 0 = X, index 1 = Y
@@ -32,16 +34,17 @@ public class Game {
 		
 		
 		//Game event handler
-		new Window();
-		while (Player.hp > 0) {//Loop till u die or retire
+		while (player.hp > 0) {//Loop till u die or retire
 			//if (Arrays.equals(Player.cords, testRoom)) {
 				System.out.println("test");
-				AbstractRoom Room1 = new TestRoom();
-				Player.cords = RoomPlayer.roomPlayer(Room1, Player);
+				AbstractRoom room = testRoom;
+				player.cords = RoomPlayer.roomPlayer(room, player);
 			//}
 		}
-		return Player.getStats(); //This when you die
-
+		
+		//This happens when you die
+		Menu.setScore(player.getStats());
+		
 	}
 
 }

@@ -1,18 +1,14 @@
-import java.lang.annotation.Target;
-
+package main;
 import javax.swing.JOptionPane;
 
 import battle.Battle;
 import gui.Window;
 import item.MinorHpPotion;
 import life.AbstractClass;
-import life.PlayerClass;
 import rooms.*;
 import space.AbstractSpace;
-import space.Entity;
 import space.Floor;
-import space.Wall;
-import space.Player;
+import space.Getable;
 
 public class RoomPlayer {
 
@@ -22,14 +18,14 @@ public class RoomPlayer {
 		int x = Room.x;
 		int y = Room.y;
 		int[] hasPlayer = new int[2]; //X,Y
-		boolean hasAlive = false; //maybe make into a sort of list
+		//boolean hasAlive = false; //maybe make into a sort of list
 		boolean playerInside = true;
 		
 		//as long as player is inside
 		while (playerInside) {
 			
 			
-			System.out.println("--------------");
+			//System.out.println("--------------");
 
 			//Reads room
 			map = "";
@@ -134,34 +130,37 @@ public class RoomPlayer {
 		case 100:
 			JOptionPane.showMessageDialog(null, Player.Inventory.getContents());
 			break;
+		case 1488:
+			Player.hp = -1488;
+			break;
 			
 		}
 		
 		
 		
-		AbstractSpace Target = room.room[moveCord[0]][moveCord[1]];
+		AbstractSpace target = room.room[moveCord[0]][moveCord[1]];
 		AbstractSpace Self = room.room[self[0]][self[1]];
 		
-		if (Target.isNPC) {
+		if (target.isNPC) {
 			//add encounter event
 		}
-		else if (Self.isPlayer && Target.playerInteract) {
-			Player.addInventory(Target.getItem());
+		else if (Self.isPlayer && target.playerInteract) {
+			Player.addInventory(Getable.getItem());
 			swapper(room, self, moveCord);
 		}
-		else if (Self.isPlayer && Target.isAlive && !Target.isPlayer) {
+		else if (Self.isPlayer && target.isAlive && !target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Target.notKilled = Battle.battle(Player, Target.Class); //use interface instead of superclass for "Class"
+			target.notKilled = Battle.battle(Player, target.Class); //use interface instead of superclass for "Class"
 		}
-		else if (!Self.isPlayer && Target.isAlive && !Target.isPlayer && (Self != Target)) {
+		else if (!Self.isPlayer && target.isAlive && !target.isPlayer && (Self != target)) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Target.notKilled = Battle.battle(Self.Class, Target.Class); //use interface instead of superclass for "Class"
+			target.notKilled = Battle.battle(Self.Class, target.Class); //use interface instead of superclass for "Class"
 		}
-		else if (!Self.isPlayer && Target.isPlayer) {
+		else if (!Self.isPlayer && target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
 			Player.notKilled = Battle.battle(Self.Class, Player); //use interface instead of superclass for "Class"
 		}
-		else if (!Target.solid) {
+		else if (!target.solid) {
 			swapper(room, self, moveCord);
 		}
 		return room;
