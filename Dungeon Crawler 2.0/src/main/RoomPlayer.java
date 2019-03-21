@@ -7,8 +7,10 @@ import item.MinorHpPotion;
 import life.AbstractClass;
 import rooms.*;
 import space.AbstractSpace;
+import space.Entity;
 import space.Floor;
 import space.Getable;
+import space.HealthPickup;
 
 public class RoomPlayer {
 
@@ -36,7 +38,7 @@ public class RoomPlayer {
 						Room.room[xx][yy].AP += 1;
 					}else if (!Room.room[xx][yy].notKilled) {
 						//KillEvent //TODO: add loot?
-						Room.room[xx][yy] = new Floor(new MinorHpPotion());
+						Room.room[xx][yy] = new HealthPickup(2);
 					}
 					if (Room.room[xx][yy].isPlayer) {
 						hasPlayer[0] = xx;
@@ -77,7 +79,7 @@ public class RoomPlayer {
 			//Temp solution to show and move player
 			int direction = util.Utilities.directionForcer(map+"\n\nUse numpad to move");
 			playerInside = Player.notKilled;
-			moveHandler(Room, hasPlayer, direction, Player);
+			moveHandler(Room, hasPlayer, direction);
 		
 		}
 		
@@ -85,7 +87,7 @@ public class RoomPlayer {
 		return cords;
 	}
 	
-	private static AbstractRoom moveHandler(AbstractRoom room, int[] self, int direction, AbstractClass Player){ //make direction display like numpad
+	private static AbstractRoom moveHandler(AbstractRoom room, int[] self, int direction){ //make direction display like numpad
 		int[] moveCord = new int[2]; 
 		//default swap TODO: combine with line above.
 		moveCord[0] = self[0];
@@ -127,44 +129,49 @@ public class RoomPlayer {
 			moveCord[0] = self[0] + 1;
 			moveCord[1] = self[1] - 1;
 			break;
-		case 100:
-			JOptionPane.showMessageDialog(null, Player.Inventory.getContents());
-			break;
-		case 1488:
-			Player.hp = -1488;
-			break;
+//		case 100:
+//			JOptionPane.showMessageDialog(null, self.Inventory.getContents());
+//			break;
+//		case 1488:
+//			Player.hp = -1488;
+//			break;
 			
 		}
 		
 		
 		
-		AbstractSpace target = room.room[moveCord[0]][moveCord[1]];
-		AbstractSpace Self = room.room[self[0]][self[1]];
+		AbstractSpace target = AbstractSpace room.room[moveCord[0]][moveCord[1]];
+		Entity Self = (Entity) room.room[self[0]][self[1]];
+		
 		
 		if (target.isNPC) {
 			//add encounter event
 		}
 		else if (Self.isPlayer && target.playerInteract) {
-			Player.addInventory(Getable.getItem());
+			self.addInventory(Getable.getItem());
 			swapper(room, self, moveCord);
 		}
 		else if (Self.isPlayer && target.isAlive && !target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			target.notKilled = Battle.battle(Player, target.Class); //use interface instead of superclass for "Class"
+			target.notKilled = Battle.battle(Player, target.getKlass()); //use interface instead of superclass for "Class"
 		}
 		else if (!Self.isPlayer && target.isAlive && !target.isPlayer && (Self != target)) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			target.notKilled = Battle.battle(Self.Class, target.Class); //use interface instead of superclass for "Class"
+			target.notKilled = Battle.battle(Self.getKlass(), target.getKlass()); //use interface instead of superclass for "Class"
 		}
 		else if (!Self.isPlayer && target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Player.notKilled = Battle.battle(Self.Class, Player); //use interface instead of superclass for "Class"
+			Player.notKilled = Battle.battle(Self.getKlass(), target.getKlass()); //use interface instead of superclass for "Class"
 		}
 		else if (!target.solid) {
 			swapper(room, self, moveCord);
 		}
+		
 		return room;
 	}
+	
+	
+	
 	private static AbstractRoom swapper(AbstractRoom room, int[] cord1, int[] cord2) {
 		//System.out.println("cord1"+cord1[0]+"+cord1[1]);
 		//System.out.println("cord2"+cord2[0]+" "+cord2[1]);

@@ -1,17 +1,16 @@
 package space;
 
-import item.AbstractItem;
+import life.AbstractClass;
 
-public class Entity extends AbstractSpace {
+public abstract class Entity extends AbstractSpace {
 
+	protected AbstractClass klass;
 	public Entity() {
 		isAlive = true;
 	}
 
-	@Override
-	public AbstractItem getItem() {
-		// TODO Auto-generated method stub
-		return null;
+	public AbstractClass getKlass() {
+		return klass;
 	}
 
 }
