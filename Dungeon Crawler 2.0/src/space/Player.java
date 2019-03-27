@@ -1,14 +1,14 @@
 package space;
 
-import life.AbstractClass;
-import main.Menu;
+import main.Game;
+import main.Main;
 
 public class Player extends Entity{
 
 	public Player() {
 		rep = '@';
 		isPlayer = true;
-		klass = Menu.game.player;
+		klass = Game.player;
 	}
 	
 

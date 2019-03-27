@@ -10,7 +10,9 @@ public abstract class AbstractRoom {
 	
 	public int x = 16;
 	public int y = 16;
-	public AbstractSpace[][] room = new AbstractSpace[x][y];{
+	public AbstractSpace[][] room;
+	
+	/*= new AbstractSpace[x][y];{
 		for (int xx = 0; xx < x; xx++) {
 			for (int yy = 0; yy < y; yy++) {
 				if (xx == 0 || xx == x-1) {
@@ -26,5 +28,5 @@ public abstract class AbstractRoom {
 		}
 		room[5][5] = new Player();
 		
-	}
+	}*/
 }

@@ -54,7 +54,7 @@ public class RoomPlayer {
 					if (Room.room[xx][yy].isAlive && (Room.room[xx][yy].AP > 0)) { //TODO: make AP calc more complex
 						Room.room[xx][yy].AP -= 1;
 						int[] self = {xx,yy};
-						moveHandler(Room, self, Room.room[xx][yy].AI(Room, self, hasPlayer), Player); //TODO: parameter "Player" should be implemented in a better way.
+						moveHandler(Room, self, Room.room[xx][yy].AI(Room, self, hasPlayer)); //TODO: parameter "Player" should be implemented in a better way.
 					}
 				}
 				map += "\n";
@@ -88,6 +88,7 @@ public class RoomPlayer {
 	}
 	
 	private static AbstractRoom moveHandler(AbstractRoom room, int[] self, int direction){ //make direction display like numpad
+		AbstractSpace Self = room.room[self[0]][self[1]];
 		int[] moveCord = new int[2]; 
 		//default swap TODO: combine with line above.
 		moveCord[0] = self[0];
@@ -129,31 +130,30 @@ public class RoomPlayer {
 			moveCord[0] = self[0] + 1;
 			moveCord[1] = self[1] - 1;
 			break;
-//		case 100:
-//			JOptionPane.showMessageDialog(null, self.Inventory.getContents());
-//			break;
-//		case 1488:
-//			Player.hp = -1488;
-//			break;
+	//	case 100:
+//			JOptionPane.showMessageDialog(null, self.inventory.getContents());
+	//		break;
+		case 1488:
+			Self.getKlass().hp = -1488;
+			break;
 			
 		}
+		  
 		
 		
-		
-		AbstractSpace target = AbstractSpace room.room[moveCord[0]][moveCord[1]];
-		Entity Self = (Entity) room.room[self[0]][self[1]];
+		AbstractSpace target = room.room[moveCord[0]][moveCord[1]];
 		
 		
 		if (target.isNPC) {
 			//add encounter event
 		}
 		else if (Self.isPlayer && target.playerInteract) {
-			self.addInventory(Getable.getItem());
+			//self.addInventory(Getable.getItem());
 			swapper(room, self, moveCord);
 		}
 		else if (Self.isPlayer && target.isAlive && !target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			target.notKilled = Battle.battle(Player, target.getKlass()); //use interface instead of superclass for "Class"
+			target.notKilled = Battle.battle(Self.getKlass(), target.getKlass()); //use interface instead of superclass for "Class"
 		}
 		else if (!Self.isPlayer && target.isAlive && !target.isPlayer && (Self != target)) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
@@ -161,7 +161,7 @@ public class RoomPlayer {
 		}
 		else if (!Self.isPlayer && target.isPlayer) {
 			//Entity TargetE = room.room[moveCord[0]][moveCord[1]];
-			Player.notKilled = Battle.battle(Self.getKlass(), target.getKlass()); //use interface instead of superclass for "Class"
+			target.notKilled = Battle.battle(Self.getKlass(), target.getKlass()); //use interface instead of superclass for "Class"
 		}
 		else if (!target.solid) {
 			swapper(room, self, moveCord);

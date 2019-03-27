@@ -31,8 +31,8 @@ public class PlayerStartingInventory extends AbstractInventory {
 			
 		}
 		
-		Game.window.setInventory(getContents());
-		Game.window.setGold(getGold());
+		//Game.window.setInventory(getContents());
+		//Game.window.setGold(getGold());
 	}
 	
 	

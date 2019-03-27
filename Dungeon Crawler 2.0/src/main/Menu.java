@@ -9,7 +9,7 @@ public class Menu {
 	
 	@SuppressWarnings("unused")
 	private static int[] score;
-	public static Game game;
+	public Game game;
 
 	public Menu() {
 		int choice = 0;
@@ -23,7 +23,7 @@ public class Menu {
 					playerName = "Bob";
 				}
 				
-				new Game(playerName);
+				game = new Game(playerName);
 			}
 			else if (choice == 1) {
 				//Top 10 list (file reader)

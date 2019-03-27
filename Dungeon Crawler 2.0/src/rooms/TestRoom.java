@@ -1,4 +1,4 @@
-package rooms;
+ package rooms;
 
 import space.AbstractSpace;
 import space.Floor;

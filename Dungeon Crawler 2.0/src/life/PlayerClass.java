@@ -8,10 +8,9 @@ public class PlayerClass extends AbstractClass {
 	
 	public int[] cords; //used to detect which room player is in
 
-	public PlayerClass(String name) {
+	public PlayerClass() {
 		this.klass = "Player";
 		isPlayer = true;
-		this.name = name;
 		
 		Inventory = new PlayerStartingInventory();
 		
@@ -24,6 +23,12 @@ public class PlayerClass extends AbstractClass {
 		hasKICK = true;
 		hasCLAW = true;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 	
 	
 	public int[] getStats() {
