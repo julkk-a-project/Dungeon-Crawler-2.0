@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -54,9 +56,16 @@ public class Window extends JFrame implements ActionListener {
 		//log.setPreferredSize(new Dimension( 2000,2000));
 		log.setEditable(false);
 		JScrollPane logScroll = new JScrollPane(log);
-		log.setAutoscrolls(true);
-		//logScroll.setPreferredSize(new Dimension( 800,300));
+		logScroll.setPreferredSize(new Dimension( 800,300));
 		add(logScroll,c);
+		
+		logScroll.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {  
+	        public void adjustmentValueChanged(AdjustmentEvent e) {  
+	            e.getAdjustable().setValue(e.getAdjustable().getMaximum());  
+	        }
+	    });
+		
+		
 
 		//inventory lable
 		c.gridx = 0;
